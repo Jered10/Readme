@@ -49,10 +49,9 @@ Example of a valid CSV row:
 
 - Java Development Kit (JDK) for compiling and running the program.
 
-## Author
+## Authors
 
-Jered Kalombo
+Jered Kalombo & Jack Bergin
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
