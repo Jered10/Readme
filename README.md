@@ -2,7 +2,7 @@
 
 ## Overview
 
-This program processes flight data from a CSV file and performs various analyses. It utilizes methods from the `MyDataReader` and `MyAnalyzer classes to read and analyze flight data, including details about flights, airports, and passenger statistics.
+This program processes flight data from a CSV file and performs various analyses. It uses methods from the `MyDataReader` and `MyAnalyzer classes to read and analyze flight data, including details about flights, airports, and passenger statistics.
 
 ## Features
 
@@ -42,7 +42,6 @@ The CSV file should contain the following columns:
 9. Distance
 10. Flight Date and Time (format: yyyy-MM-dd:HH)
 
-Example of a valid CSV row:
 
 
 ## Dependencies
