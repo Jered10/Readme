@@ -1,57 +1,50 @@
-# Flight Data Analysis Program
+# MyLinkedList Flight Data Management
 
 ## Overview
 
-This program processes flight data from a CSV file and performs various analyses. It uses methods from the `MyDataReader` and `MyAnalyzer classes to read and analyze flight data, including details about flights, airports, and passenger statistics.
+This project is designed to manage and analyze flight data using a custom `MyLinkedList` class, which stores flight objects in a linked list. The primary goal is to efficiently add flights, maintain the order based on flight date and time, and provide an iterator for filtering flights by origin airport and date range.
+
+
+## Purpose
+
+The main purpose of this code is to read flight data from a CSV file, store it in a linked list, and allow for easy iteration through the flights that meet specific criteria. This setup is particularly useful for analyzing passenger counts for different airports over a specified time frame.
 
 ## Features
 
-- **Read Flight Data**: Reads flight information from a CSV file.
-- **Print Flight Details**: This function outputs details for all flights, including origin, destination, number of seats, passengers, distance, and date/time.
-- **Analyze Airports**: Identifies unique Maine (ME) airports.
-- **Passenger Statistics**: 
-  - Finds the maximum number of passengers on flights arriving at Portland International Jetport (PWM).
-  - Calculates the percentage of fully booked flights (no empty seats).
-  - Computes the average number of passengers on flights from PWM to Florida (FL) during 2009.
+- **Flight Management**: Store flight details, including origin, destination, number of passengers, seats, distance, and flight date and time.
+- **Custom Linked List**: Implement a `MyLinkedList` class to handle flight objects efficiently.
+- **Iterator Support**: Provide an iterator to filter flights based on origin airport and a specified date range.
 
-## Classes
+## Components
 
-- `program1`: The main class orchestrates reading flight data and performing analyses.
-- `MyDataReader`: Responsible for reading data from the CSV file and parsing it into `Flight` objects.
-- `MyAnalyzer`: Contains methods for analyzing flight data, including airport and passenger statistics.
-`Flight` represents a flight with details such as origin, destination, passengers, seats, distance, and flight date/time.
-- `Airport`: Represents an airport with its name, city, and state.
+### 1. **Flight Class**
+
+The `Flight` class represents an individual flight with attributes such as origin, destination, passenger count, seat count, flight distance, and flight date and time. It includes methods to access these properties.
+
+### 2. **Airport Class**
+
+The `Airport` class. Each flight is associated with an origin and a destination airport.
+
+### 3. **MyLinkedList Class**
+
+- **Node Inner Class**: Represents each element in the linked list, containing a `Flight` object and pointers to the next node and the next node with the same origin.
+- **add(Flight newFlight)**: This method adds a new flight to the linked list while maintaining the order based on the flight's date and time. It also sets pointers for efficient access to flights with the same origin.
+- **fixNextAirportPointers(Flight newFlight)**: This method ensures that nodes with the same origin airport are linked together for quick traversal.
+- **iterator(String airport, LocalDateTime start, LocalDateTime end)**: Returns an instance of the `MyItr` iterator to filter flights based on the specified airport and date range.
+
+### 4. **MyItr Class (Iterator)**
+
+- **hasNext()**: Checks if there are more flights in the specified range.
+- **next()**: Returns the next flight in the iteration. If no flights are available, it throws a `NoSuchElementException`.
 
 ## Usage
 
-1. Ensure you have a valid CSV file named `flights.csv` in the same directory as the program.
-2. Compile and run the `program1` class.
+1. **Prepare Flight Data**: Ensure you have a `flights.csv` file containing the flight data in the appropriate format.
+2. **Run the Program**: Execute the main method in the `program3` class. It will read the CSV file, populate the `MyLinkedList`, and print out the total flights read and the flights added to the list, as well as the passenger counts for the specified airports over the years.
 
-## CSV File Format
+## Example Output
 
-The CSV file should contain the following columns:
+The program will output the number of passengers for each airport from 1994 to 2009, including the total number of flights processed.
 
-1. Origin Airport Name
-2. Origin City
-3. Origin State
-4. Destination Airport Name
-5. Destination City
-6. Destination State
-7. Number of Passengers
-8. Total Seats
-9. Distance
-10. Flight Date and Time (format: yyyy-MM-dd:HH)
-
-
-
-## Dependencies
-
-- Java Development Kit (JDK) for compiling and running the program.
-
-## Authors
-
-Jered Kalombo & Jack Bergin
-
-## License
-
-Copyright(c) [2024] 
+## Author: Jered Kalombo  
+## Version: 1.0  
