@@ -1,50 +1,43 @@
-# MyLinkedList Flight Data Management
+# Song Lyrics Data Analysis
 
 ## Overview
 
-This project is designed to manage and analyze flight data using a custom `MyLinkedList` class, which stores flight objects in a linked list. The primary goal is to efficiently add flights, maintain the order based on flight date and time, and provide an iterator for filtering flights by origin airport and date range.
-
+This project analyzes song lyrics data across six genres (rap, R&B, pop, rock, miscellaneous, and country) using a custom `BinarySearchTree` class to manage `Song` objects. The primary goal is to efficiently filter and analyze song data based on various criteria, such as view counts and popular artists.
 
 ## Purpose
 
-The main purpose of this code is to read flight data from a CSV file, store it in a linked list, and allow for easy iteration through the flights that meet specific criteria. This setup is particularly useful for analyzing passenger counts for different airports over a specified time frame.
+The main purpose of this code is to read song lyrics data from a TSV file, store it in a binary search tree, and allow for easy iteration and filtering of songs that meet specific criteria. This setup is particularly useful for identifying trends in different music genres over time.
 
 ## Features
 
-- **Flight Management**: Store flight details, including origin, destination, number of passengers, seats, distance, and flight date and time.
-- **Custom Linked List**: Implement a `MyLinkedList` class to handle flight objects efficiently.
-- **Iterator Support**: Provide an iterator to filter flights based on origin airport and a specified date range.
+- **Song Management**: Store song details, including title, artist, year, views, and lyrics.
+- **Binary Search Tree**: Implement a `BinarySearchTree` class to manage `Song` objects efficiently.
+- **Iterator Support**: Provide an iterator to filter songs based on view count and identify popular artists.
 
 ## Components
 
-### 1. **Flight Class**
+### 1. Song Class
 
-The `Flight` class represents an individual flight with attributes such as origin, destination, passenger count, seat count, flight distance, and flight date and time. It includes methods to access these properties.
+The `Song` class represents an individual song with attributes such as title, artist, year, view count, and lyrics. It includes methods to access these properties.
 
-### 2. **Airport Class**
+### 2. BinarySearchTree Class
 
-The `Airport` class. Each flight is associated with an origin and a destination airport.
+- **insert(Song newSong)**: This method adds a new song to the binary search tree based on its view count.
+- **searchByViewCount(int minViews)**: This method retrieves songs with view counts above a specified threshold.
+- **isValidBST()**: This method checks if the tree maintains the properties of a binary search tree.
+- **toSortedList()**: This method converts the tree into a sorted list of songs based on view count.
+- **clone()**: This method creates a clone of the binary search tree.
+- **findPopularArtists()**: This method identifies artists with the most popular songs based on view counts.
+- **filterSongsByViewRange(int minViews, int maxViews)**: This method filters songs within a specified view count range.
 
-### 3. **MyLinkedList Class**
+### 3. Main Class
 
-- **Node Inner Class**: Represents each element in the linked list, containing a `Flight` object and pointers to the next node and the next node with the same origin.
-- **add(Flight newFlight)**: This method adds a new flight to the linked list while maintaining the order based on the flight's date and time. It also sets pointers for efficient access to flights with the same origin.
-- **fixNextAirportPointers(Flight newFlight)**: This method ensures that nodes with the same origin airport are linked together for quick traversal.
-- **iterator(String airport, LocalDateTime start, LocalDateTime end)**: Returns an instance of the `MyItr` iterator to filter flights based on the specified airport and date range.
-
-### 4. **MyItr Class (Iterator)**
-
-- **hasNext()**: Checks if there are more flights in the specified range.
-- **next()**: Returns the next flight in the iteration. If no flights are available, it throws a `NoSuchElementException`.
+- **runAnalysis()**: Executes the analysis by reading the TSV file, populating the binary search tree, and printing the results, including total songs processed, popular artists, and filtered songs.
 
 ## Usage
 
-1. **Prepare Flight Data**: Ensure you have a `flights.csv` file containing the flight data in the appropriate format.
-2. **Run the Program**: Execute the main method in the `program3` class. It will read the CSV file, populate the `MyLinkedList`, and print out the total flights read and the flights added to the list, as well as the passenger counts for the specified airports over the years.
-
-## Example Output
-
-The program will output the number of passengers for each airport from 1994 to 2009, including the total number of flights processed.
+1. **Prepare Song Data**: Ensure you have a `song_lyrics.tsv` file containing the song lyrics data in the appropriate format.
+2. **Run the Program**: Execute the main method in the `Main` class. It will read the TSV file, populate the `BinarySearchTree`, and output the results, including popular artists and filtered songs based on view counts.
 
 ## Author: Jered Kalombo  
-## Version: 1.0  
+## Version: 1.0
