@@ -1,43 +1,46 @@
-# Song Lyrics Data Analysis
+# Song Lyrics Search Engine
 
 ## Overview
 
-This project analyzes song lyrics data across six genres (rap, R&B, pop, rock, miscellaneous, and country) using a custom `BinarySearchTree` class to manage `Song` objects. The primary goal is to efficiently filter and analyze song data based on various criteria, such as view counts and popular artists.
+This project analyzes song lyrics data from a TSV file by utilizing a custom `MySearchEngine` class to perform text-based search operations. The main goal of this program is to provide an efficient search mechanism based on song lyrics, allowing users to query for relevant songs by matching terms found in the lyrics.
 
 ## Purpose
 
-The main purpose of this code is to read song lyrics data from a TSV file, store it in a binary search tree, and allow for easy iteration and filtering of songs that meet specific criteria. This setup is particularly useful for identifying trends in different music genres over time.
+The purpose of this code is to read song lyrics data, store it in a structure optimized for fast search, and allow users to search for songs based on query terms. The search engine uses the term frequency (TF) and inverse document frequency (IDF) to calculate relevance scores for each song, enabling accurate results for text-based queries.
 
 ## Features
 
-- **Song Management**: Store song details, including title, artist, year, views, and lyrics.
-- **Binary Search Tree**: Implement a `BinarySearchTree` class to manage `Song` objects efficiently.
-- **Iterator Support**: Provide an iterator to filter songs based on view count and identify popular artists.
+- **Song Lyrics Data**: Read and store song details, including title, artist, year, views, and lyrics.
+- **Search Engine**: Implement a custom search engine that calculates the relevance of songs based on the query terms and their lyrics.
+- **Query Matching**: Search for songs based on lyrics matching input queries and rank them according to their relevance.
+- **TF-IDF Calculation**: Use TF-IDF (Term Frequency-Inverse Document Frequency) to evaluate the importance of terms within songs' lyrics.
 
 ## Components
 
 ### 1. Song Class
 
-The `Song` class represents an individual song with attributes such as title, artist, year, view count, and lyrics. It includes methods to access these properties.
+The `Song` class represents a song with attributes such as title, artist, year, view count, and lyrics. It also includes methods for accessing and manipulating these properties.
 
-### 2. BinarySearchTree Class
+### 2. MySearchEngine Class
 
-- **insert(Song newSong)**: This method adds a new song to the binary search tree based on its view count.
-- **searchByViewCount(int minViews)**: This method retrieves songs with view counts above a specified threshold.
-- **isValidBST()**: This method checks if the tree maintains the properties of a binary search tree.
-- **toSortedList()**: This method converts the tree into a sorted list of songs based on view count.
-- **clone()**: This method creates a clone of the binary search tree.
-- **findPopularArtists()**: This method identifies artists with the most popular songs based on view counts.
-- **filterSongsByViewRange(int minViews, int maxViews)**: This method filters songs within a specified view count range.
+- **processAllSongs(ArrayList<Song> songs)**: This method processes all songs to calculate term frequencies (TF) for each song and the inverse document frequency (IDF) across the entire collection.
+- **search(String query)**: This method allows users to search for songs using query terms. It calculates a relevance score for each song and outputs the top matches.
+- **calculateRelevance(Song song, String[] query)**: This method computes the relevance score of a song based on the query terms using a custom formula that combines term frequency and inverse document frequency.
 
-### 3. Main Class
+### 3. Program6 Class (Main Class)
 
-- **runAnalysis()**: Executes the analysis by reading the TSV file, populating the binary search tree, and printing the results, including total songs processed, popular artists, and filtered songs.
+- **main(String[] args)**: The main method reads the song lyrics data from a TSV file, initializes the search engine, and tests it with a set of queries. It outputs the results of the search, including song titles, artists, and relevance scores.
 
 ## Usage
 
-1. **Prepare Song Data**: Ensure you have a `song_lyrics.tsv` file containing the song lyrics data in the appropriate format.
-2. **Run the Program**: Execute the main method in the `Main` class. It will read the TSV file, populate the `BinarySearchTree`, and output the results, including popular artists and filtered songs based on view counts.
+1. **Prepare Song Data**: Ensure you have a `song_lyrics.tsv` file containing song lyrics data in the appropriate format (columns: title, artist, year, views, lyrics).
+2. **Run the Program**: Execute the `Program6` class. It will read the TSV file, initialize the `MySearchEngine`, and run the search for multiple test queries.
+3. **Querying**: After running the program, you can modify the queries in the code or prompt the user to input new search terms. The search engine will display the most relevant songs based on the lyrics.
+
+## Example Output
+
+- **Total songs loaded**: Displays the number of songs successfully loaded from the TSV file.
+- **Search results**: For each query, the program outputs the top 5 songs ranked by relevance, along with the song title, artist, and relevance score.
 
 ## Author: Jered Kalombo  
 ## Version: 1.0
