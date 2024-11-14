@@ -1,46 +1,56 @@
-# Song Lyrics Search Engine
+# AVL Tree Song Manager
 
 ## Overview
 
-This project analyzes song lyrics data from a TSV file by utilizing a custom `MySearchEngine` class to perform text-based search operations. The main goal of this program is to provide an efficient search mechanism based on song lyrics, allowing users to query for relevant songs by matching terms found in the lyrics.
+This project provides a robust system for managing and searching song data using an AVL Tree structure. By implementing an automatically balanced binary search tree (BST), the AVL Tree ensures efficient insertion, deletion, and search operations, even with large datasets. The tree balances itself using rotations to maintain optimal height, allowing for faster search times compared to an unbalanced BST.
 
 ## Purpose
 
-The purpose of this code is to read song lyrics data, store it in a structure optimized for fast search, and allow users to search for songs based on query terms. The search engine uses the term frequency (TF) and inverse document frequency (IDF) to calculate relevance scores for each song, enabling accurate results for text-based queries.
+The purpose of this code is to enable efficient storage and retrieval of songs, particularly for scenarios where search operations need to consider high view counts. The AVL Tree balances itself after each insertion, keeping search times efficient. Users can query the tree for songs based on their view count, returning a list of popular songs that meet the specified criteria.
 
 ## Features
 
-- **Song Lyrics Data**: Read and store song details, including title, artist, year, views, and lyrics.
-- **Search Engine**: Implement a custom search engine that calculates the relevance of songs based on the query terms and their lyrics.
-- **Query Matching**: Search for songs based on lyrics matching input queries and rank them according to their relevance.
-- **TF-IDF Calculation**: Use TF-IDF (Term Frequency-Inverse Document Frequency) to evaluate the importance of terms within songs' lyrics.
+- **AVL Tree Structure**: Automatically balanced binary search tree with efficient insertion, search, and rotation operations.
+- **Song Search by View Count**: Retrieve songs that meet or exceed a specified view count threshold.
+- **Rotation Tracking**: Keep count of different rotations (left, right, left-right, and right-left) used to maintain tree balance.
+- **Tree Height Calculation**: Compute and retrieve the height of the AVL Tree for performance insights.
 
 ## Components
 
-### 1. Song Class
+### 1. `Song` Class
 
-The `Song` class represents a song with attributes such as title, artist, year, view count, and lyrics. It also includes methods for accessing and manipulating these properties.
+The `Song` class represents a song with attributes like title, artist, view count, and lyrics. Each song is comparable, allowing insertion into the AVL Tree based on customizable criteria.
 
-### 2. MySearchEngine Class
+### 2. `AVLTree` Class (extends `BinarySearchTree`)
 
-- **processAllSongs(ArrayList<Song> songs)**: This method processes all songs to calculate term frequencies (TF) for each song and the inverse document frequency (IDF) across the entire collection.
-- **search(String query)**: This method allows users to search for songs using query terms. It calculates a relevance score for each song and outputs the top matches.
-- **calculateRelevance(Song song, String[] query)**: This method computes the relevance score of a song based on the query terms using a custom formula that combines term frequency and inverse document frequency.
+- **Rotation Counters**: Tracks counts for left, right, left-right, and right-left rotations, helping monitor the balancing process.
+- **Automatic Rebalancing**: Ensures balanced structure through rotations after each insertion.
+- **Height Calculation**: Updates and retrieves node heights to assess tree balance.
+- **Search by View Count**: Finds and returns songs with view counts greater than or equal to a specified threshold, traversing nodes efficiently.
 
-### 3. Program6 Class (Main Class)
+### Key Methods in `AVLTree`
 
-- **main(String[] args)**: The main method reads the song lyrics data from a TSV file, initializes the search engine, and tests it with a set of queries. It outputs the results of the search, including song titles, artists, and relevance scores.
+- **`insert(Song song)`**: Inserts a song into the AVL Tree, performing rotations to maintain balance as needed.
+- **`search(int views)`**: Returns a list of songs with views greater than or equal to a specified value.
+- **`getHeight()`**: Retrieves the height of the tree for performance insights.
+- **Rotation Methods**:
+  - **`leftRotation(Node node)`**
+  - **`rightRotation(Node node)`**
+  - **`getLeftRotations()`**: Returns the count of left rotations.
+  - **`getRightRotations()`**: Returns the count of right rotations.
 
 ## Usage
 
-1. **Prepare Song Data**: Ensure you have a `song_lyrics.tsv` file containing song lyrics data in the appropriate format (columns: title, artist, year, views, lyrics).
-2. **Run the Program**: Execute the `Program6` class. It will read the TSV file, initialize the `MySearchEngine`, and run the search for multiple test queries.
-3. **Querying**: After running the program, you can modify the queries in the code or prompt the user to input new search terms. The search engine will display the most relevant songs based on the lyrics.
+1. **Prepare Song Data**: Create `Song` objects containing details like title, artist, view count, and lyrics.
+2. **Initialize AVLTree**: Instantiate an `AVLTree` object and insert songs as needed.
+3. **Search by Views**: Use the `search(int views)` method to retrieve songs that meet a minimum view count threshold.
+4. **Check Rotations and Height**: Access rotation counts and tree height for insights into tree balancing.
 
 ## Example Output
 
-- **Total songs loaded**: Displays the number of songs successfully loaded from the TSV file.
-- **Search results**: For each query, the program outputs the top 5 songs ranked by relevance, along with the song title, artist, and relevance score.
+- **Tree Height**: Displays the height of the AVL Tree.
+- **Rotation Counts**: Shows the number of each type of rotation performed to keep the tree balanced.
+- **Search Results**: Outputs a list of songs with view counts greater than or equal to the specified threshold.
 
 ## Author: Jered Kalombo  
 ## Version: 1.0
