@@ -1,56 +1,84 @@
-# AVL Tree Song Manager
+# Twitter Sentiment Analysis Program  
 
-## Overview
+This project provides a robust system for analyzing sentiment in Twitter data using a custom **HashMap** implementation. By leveraging an efficient data structure and sentiment analysis model, the program processes large datasets of tweets, measures performance metrics, and evaluates sentiment prediction accuracy.  
 
-This project provides a robust system for managing and searching song data using an AVL Tree structure. By implementing an automatically balanced binary search tree (BST), the AVL Tree ensures efficient insertion, deletion, and search operations, even with large datasets. The tree balances itself using rotations to maintain optimal height, allowing for faster search times compared to an unbalanced BST.
+The system includes comprehensive performance tracking, reporting build times, and hash map efficiency through resize operations.  
 
-## Purpose
+---
 
-The purpose of this code is to enable efficient storage and retrieval of songs, particularly for scenarios where search operations need to consider high view counts. The AVL Tree balances itself after each insertion, keeping search times efficient. Users can query the tree for songs based on their view count, returning a list of popular songs that meet the specified criteria.
+## Purpose  
 
-## Features
+The purpose of this program is to enable efficient sentiment analysis of tweets using a custom **HashMap-based implementation**. The program processes training and test datasets, builds a sentiment analysis model, and evaluates prediction accuracy while tracking performance metrics.  
 
-- **AVL Tree Structure**: Automatically balanced binary search tree with efficient insertion, search, and rotation operations.
-- **Song Search by View Count**: Retrieve songs that meet or exceed a specified view count threshold.
-- **Rotation Tracking**: Keep count of different rotations (left, right, left-right, and right-left) used to maintain tree balance.
-- **Tree Height Calculation**: Compute and retrieve the height of the AVL Tree for performance insights.
+Users can analyze the system's efficiency through measurements of data loading times and hash map resize operations.  
 
-## Components
+---
 
-### 1. `Song` Class
+## Features  
 
-The `Song` class represents a song with attributes like title, artist, view count, and lyrics. Each song is comparable, allowing insertion into the AVL Tree based on customizable criteria.
+- **Custom HashMap Implementation:** Efficient storage and retrieval of tweet data with dynamic resizing capabilities.  
+- **Performance Tracking:** Detailed monitoring of build times and resize operations.  
+- **Sentiment Analysis Model:** Trains on labeled data to make accurate predictions.  
+- **Error Handling:** Comprehensive handling of file I/O operations.  
+- **Metrics Reporting:** Real-time performance measurement and reporting.  
 
-### 2. `AVLTree` Class (extends `BinarySearchTree`)
+---
 
-- **Rotation Counters**: Tracks counts for left, right, left-right, and right-left rotations, helping monitor the balancing process.
-- **Automatic Rebalancing**: Ensures balanced structure through rotations after each insertion.
-- **Height Calculation**: Updates and retrieves node heights to assess tree balance.
-- **Search by View Count**: Finds and returns songs with view counts greater than or equal to a specified threshold, traversing nodes efficiently.
+## Components  
 
-### Key Methods in `AVLTree`
+### **Tweet Class**  
+The `Tweet` class represents a tweet with its content and associated metadata, designed to work seamlessly with the custom HashMap implementation for efficient storage and retrieval.  
 
-- **`insert(Song song)`**: Inserts a song into the AVL Tree, performing rotations to maintain balance as needed.
-- **`search(int views)`**: Returns a list of songs with views greater than or equal to a specified value.
-- **`getHeight()`**: Retrieves the height of the tree for performance insights.
-- **Rotation Methods**:
-  - **`leftRotation(Node node)`**
-  - **`rightRotation(Node node)`**
-  - **`getLeftRotations()`**: Returns the count of left rotations.
-  - **`getRightRotations()`**: Returns the count of right rotations.
+### **MyHashMap Class**  
 
-## Usage
+- **Dynamic Resizing:** Automatically adjusts size for optimal performance.  
+- **Performance Monitoring:** Tracks resize operations and build times.  
+- **Generic Implementation:** Handles `Tweet` objects mapped to Boolean sentiment values.  
+- **Efficient Storage:** Optimized data structure for quick access and updates.  
 
-1. **Prepare Song Data**: Create `Song` objects containing details like title, artist, view count, and lyrics.
-2. **Initialize AVLTree**: Instantiate an `AVLTree` object and insert songs as needed.
-3. **Search by Views**: Use the `search(int views)` method to retrieve songs that meet a minimum view count threshold.
-4. **Check Rotations and Height**: Access rotation counts and tree height for insights into tree balancing.
+#### Key Methods in `MyHashMap`:  
 
-## Example Output
+- **`readDataToHashMap`**: Processes and loads tweet data from TSV files.  
+- **`getResizeCount`**: Returns the number of resize operations performed.  
+- **`prediction`**: Calculates and returns sentiment prediction accuracy.  
 
-- **Tree Height**: Displays the height of the AVL Tree.
-- **Rotation Counts**: Shows the number of each type of rotation performed to keep the tree balanced.
-- **Search Results**: Outputs a list of songs with view counts greater than or equal to the specified threshold.
+#### Error Handling Methods:  
 
-## Author: Jered Kalombo  
-## Version: 1.0
+- Comprehensive file operation error handling.  
+- Data validation and error reporting.  
+- Exception management for I/O operations.  
+
+---
+
+## Usage  
+
+1. **Prepare Data Files:** Place `tweets_train.tsv` and `tweets_test.tsv` in the correct directory.  
+2. **Run Program:** Execute `Program8` to begin data processing.  
+3. **Review Output:** Analyze the following metrics:  
+
+   - **Training Data Build Time:** Displays milliseconds taken to build the training hash map.  
+   - **Test Data Build Time:** Displays milliseconds taken to build the test hash map.  
+   - **Hash Map Resize Counts:** Shows the number of resizing operations for each hash map.  
+   - **Prediction Accuracy Ratio:** Outputs the ratio of correct predictions made by the model.  
+
+---
+
+## Example Output  
+
+```plaintext
+Build Times:  
+- Training Hash Map: 125ms  
+- Testing Hash Map: 98ms  
+
+Resize Counts:  
+- Training Hash Map: 4  
+- Testing Hash Map: 3  
+
+Prediction Results:  
+- Accuracy: 87.5%
+
+
+Author
+
+Jered Kalombo
+Version: 26 November 2024
