@@ -1,84 +1,84 @@
 # Twitter Sentiment Analysis Program  
 
-This project provides a robust system for analyzing sentiment in Twitter data using a custom **HashMap** implementation. By leveraging an efficient data structure and sentiment analysis model, the program processes large datasets of tweets, measures performance metrics, and evaluates sentiment prediction accuracy.  
-
-The system includes comprehensive performance tracking, reporting build times, and hash map efficiency through resize operations.  
+This project provides a robust system for analyzing Twitter data using **custom Heap and HashMap implementations**. It efficiently handles tweet data, tracks user activity, and analyzes sentiment through an intuitive, interactive interface. The system also monitors performance by displaying build times and heap operation metrics.
 
 ---
 
 ## Purpose  
 
-The purpose of this program is to enable efficient sentiment analysis of tweets using a custom **HashMap-based implementation**. The program processes training and test datasets, builds a sentiment analysis model, and evaluates prediction accuracy while tracking performance metrics.  
+The purpose of this program is to enable efficient management and analysis of tweets using custom **Heap and HashMap-based implementations**. The system processes tweet datasets, maintains chronological ordering, and provides real-time access to user activity while tracking performance metrics.  
 
-Users can analyze the system's efficiency through measurements of data loading times and hash map resize operations.  
+Users can monitor system efficiency through measurements of data loading times and heap operations.
 
 ---
 
 ## Features  
 
-- **Custom HashMap Implementation:** Efficient storage and retrieval of tweet data with dynamic resizing capabilities.  
-- **Performance Tracking:** Detailed monitoring of build times and resize operations.  
-- **Sentiment Analysis Model:** Trains on labeled data to make accurate predictions.  
-- **Error Handling:** Comprehensive handling of file I/O operations.  
-- **Metrics Reporting:** Real-time performance measurement and reporting.  
+- **Custom Heap Implementation:** Efficient priority-based storage of tweets by timestamp.  
+- **Custom HashMap Implementation:** Maps users to their respective tweet heaps.  
+- **Performance Tracking:** Detailed monitoring of build times and heap operations.  
+- **User Interface:** Interactive command-line menu system.  
+- **Tweet Management:** View and delete recent tweets.  
+- **Error Handling:** Comprehensive exception management.  
 
 ---
 
 ## Components  
 
-### **Tweet Class**  
-The `Tweet` class represents a tweet with its content and associated metadata, designed to work seamlessly with the custom HashMap implementation for efficient storage and retrieval.  
+### Tweet Class  
+The `Tweet` class represents tweets with content and metadata, implementing `Comparable` for chronological ordering in the heap structure.
 
-### **MyHashMap Class**  
+### MyHeap Class  
 
+- **Priority Ordering:** Maintains the most recent tweets at the root.  
 - **Dynamic Resizing:** Automatically adjusts size for optimal performance.  
-- **Performance Monitoring:** Tracks resize operations and build times.  
-- **Generic Implementation:** Handles `Tweet` objects mapped to Boolean sentiment values.  
-- **Efficient Storage:** Optimized data structure for quick access and updates.  
+- **Generic Implementation:** Works with any `Comparable` objects.  
+- **Efficient Access:** Provides O(1) access to the most recent tweets.  
 
-#### Key Methods in `MyHashMap`:  
+#### Key Methods in `MyHeap`:  
 
-- **`readDataToHashMap`**: Processes and loads tweet data from TSV files.  
-- **`getResizeCount`**: Returns the number of resize operations performed.  
-- **`prediction`**: Calculates and returns sentiment prediction accuracy.  
+- **`add`**: Adds new tweets while maintaining heap property.  
+- **`delete`**: Removes and returns the most recent tweet.  
+- **`peek`**: Views the most recent tweet without removal.  
+- **`isEmpty`**: Checks if the heap contains any tweets.  
 
 #### Error Handling Methods:  
 
-- Comprehensive file operation error handling.  
-- Data validation and error reporting.  
-- Exception management for I/O operations.  
+- Input validation and error reporting.  
+- Exception management for heap operations.  
+- Null pointer handling.  
 
 ---
 
 ## Usage  
 
-1. **Prepare Data Files:** Place `tweets_train.tsv` and `tweets_test.tsv` in the correct directory.  
-2. **Run Program:** Execute `Program8` to begin data processing.  
-3. **Review Output:** Analyze the following metrics:  
+1. **Prepare Data File:** Place `tweets_train.tsv` in the correct directory.  
+2. **Run Program:** Execute `Program9` to start the system.  
+3. **Review Options:**  
 
-   - **Training Data Build Time:** Displays milliseconds taken to build the training hash map.  
-   - **Test Data Build Time:** Displays milliseconds taken to build the test hash map.  
-   - **Hash Map Resize Counts:** Shows the number of resizing operations for each hash map.  
-   - **Prediction Accuracy Ratio:** Outputs the ratio of correct predictions made by the model.  
+   - Sign in with User ID.  
+   - View the most recent tweet.  
+   - Delete the most recent tweet.  
+   - View other users' tweets.  
+   - Sign out.  
 
 ---
 
 ## Example Output  
 
 ```plaintext
-Build Times:  
-- Training Hash Map: 125ms  
-- Testing Hash Map: 98ms  
-
-Resize Counts:  
-- Training Hash Map: 4  
-- Testing Hash Map: 3  
-
-Prediction Results:  
-- Accuracy: 87.5%
+====================================
+    Welcome to TweetMap System
+====================================
+Version: 1.0
+Author: Jered Kalombo
+Date: December 2024
+====================================
 
 
-Author
+MAIN MENU
+1. Start TweetMap Interface
+2. About Program
+3. Exit Program
 
-Jered Kalombo
-Version: 26 November 2024
+Enter your choice (1-3):
